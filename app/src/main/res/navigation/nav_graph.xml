@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainPage">
+
+    <fragment
+        android:id="@+id/mainPage"
+        android:name="uk.ac.bmth.icecodetruckers.barapp.MainPage"
+        android:label="Main Page"
+        tools:layout="@layout/fragment_main_page">
+        <action
+            android:id="@+id/action_mainPage_to_barManagement2"
+            app:destination="@id/barManagement" />
+        <action
+            android:id="@+id/action_mainPage_to_cocktailCalculator"
+            app:destination="@id/cocktailCalculator" />
+        <action
+            android:id="@+id/action_mainPage_to_cocktailRecipe"
+            app:destination="@id/cocktailRecipe" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/barManagement"
+        android:name="uk.ac.bmth.icecodetruckers.barapp.BarManagement"
+        android:label="Bar Management"
+        tools:layout="@layout/fragment_bar_management" />
+
+    <fragment
+        android:id="@+id/cocktailCalculator"
+        android:name="uk.ac.bmth.icecodetruckers.barapp.CocktailCalculator"
+        android:label="Cocktail Calculator"
+        tools:layout="@layout/fragment_cocktail_calculator" />
+
+    <fragment
+        android:id="@+id/cocktailRecipe"
+        android:name="uk.ac.bmth.icecodetruckers.barapp.CocktailRecipe"
+        android:label="Cocktail Recipe"
+        tools:layout="@layout/fragment_cocktail_recipe" />
+
+</navigation>
