@@ -1,0 +1,70 @@
+package uk.ac.bmth.icecodetruckers.barapp.database
+
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "users")
+data class User(
+    @PrimaryKey val id: Int,
+    val username: String,
+    val passwordHash: String
+)
+
+@Entity(tableName = "inventories", foreignKeys = arrayOf(ForeignKey (
+    entity = User::class,
+    parentColumns = arrayOf("id"),
+    childColumns = arrayOf("userId")
+    ), ForeignKey(
+    entity = Ingredient::class,
+    parentColumns = arrayOf("id"),
+    childColumns = arrayOf("ingredientId")
+    ))
+)
+data class Inventory(
+    @PrimaryKey val id: Int,
+    val userId: Int,
+    val ingredientId: Int
+)
+
+@Entity(tableName = "ingredients")
+data class Ingredient(
+    @PrimaryKey val id: Int,
+    val name: String
+)
+
+@Entity(tableName = "ingredient_product_link", foreignKeys = arrayOf(ForeignKey (
+    entity = Ingredient::class,
+    parentColumns = arrayOf("id"),
+    childColumns = arrayOf("ingredientId")
+), ForeignKey(
+    entity = Product::class,
+    parentColumns = arrayOf("id"),
+    childColumns = arrayOf("productId")
+))
+)
+data class IngredientProductLink(
+    @PrimaryKey val id: Int,
+    val ingredientId: Int,
+    val productId: Int
+)
+
+@Entity(tableName = "products")
+data class Product(
+    @PrimaryKey val id: Int,
+    val name: String,
+    val price: Double,
+    val URL: String
+)
+
+@Entity(tableName = "cocktails")
+data class Cocktail(
+    @PrimaryKey val id: Int,
+    val name: String,
+    val description: String,
+    val recipe: String,
+    val imagePath: String
+)
+
+
+
