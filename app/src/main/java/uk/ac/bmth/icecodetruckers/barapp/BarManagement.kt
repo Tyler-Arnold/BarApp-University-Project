@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -55,7 +56,7 @@ class BarManagement : Fragment() {
         cocktailViewModel = ViewModelProviders.of(this).get(CocktailViewModel::class.java)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = CocktailListAdapter(this.activity!!.applicationContext)
+        val adapter = CocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 
@@ -63,8 +64,11 @@ class BarManagement : Fragment() {
             // Update the cached copy of the words in the adapter.
             inventories?.let { adapter.setInventories(it) }
         })
-
         return view
+    }
+
+    fun removeItem(position: Int) {
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

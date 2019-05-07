@@ -1,20 +1,19 @@
 package uk.ac.bmth.icecodetruckers.barapp.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 
 @Dao
 interface CocktailDao {
 
     data class InventoryTuple(
         val id: Int,
+        val userId: Int,
+        val ingredientId: Int,
         val name: String
     )
 
-    @Query("SELECT inventories.id, ingredients.name FROM inventories INNER JOIN ingredients ON inventories.ingredientId=ingredients.id")
+    @Query("SELECT inventories.id, inventories.userId, inventories.ingredientId, ingredients.name FROM inventories INNER JOIN ingredients ON inventories.ingredientId=ingredients.id")
     fun getEntireInventory(): LiveData<List<InventoryTuple>>
 
     @Query("SELECT * FROM ingredients")
@@ -59,4 +58,7 @@ interface CocktailDao {
     fun deleteAllProduct()
     @Query("DELETE FROM cocktails")
     fun deleteAllCocktail()
+
+    @Delete
+    fun delete(inventory: Inventory)
 }
