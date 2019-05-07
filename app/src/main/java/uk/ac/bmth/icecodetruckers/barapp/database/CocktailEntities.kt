@@ -1,8 +1,13 @@
 package uk.ac.bmth.icecodetruckers.barapp.database
 
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Fts4
 import androidx.room.PrimaryKey
+import androidx.room.ColumnInfo
+
+
 
 @Entity(tableName = "users")
 data class User(
@@ -65,6 +70,11 @@ data class Cocktail(
     val recipe: String,
     val imagePath: String
 )
-
-
+//
+//@Fts4(contentEntity = Ingredient::class)
+//@Entity(tableName = "ingredientsFts")
+//class IngredientFts(@PrimaryKey private val rowid: Int,
+//                    var name: String) {
+//
+//}
 

@@ -6,4 +6,6 @@
     <string name="bar_management">Bar Management</string>
     <string name="cocktail_calculator">Cocktail Calculator</string>
     <string name="recipe">Recipe</string>
+    <string name="app_label">Happy Hour</string>
+    <string name="search_hint">Ingredients</string>
 </resources>

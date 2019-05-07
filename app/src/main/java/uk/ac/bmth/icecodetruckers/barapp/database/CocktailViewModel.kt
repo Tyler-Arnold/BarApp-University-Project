@@ -5,18 +5,22 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class CocktailViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: CocktailRepository
     //val allWords: LiveData<List<Word>>
+    val entireInventory: LiveData<List<CocktailDao.InventoryTuple>>
 
     init {
         //database retrieval
         val cocktailDao = CocktailRoomDatabase.getDatabase(application, viewModelScope).cocktailDao()
         repository = CocktailRepository(cocktailDao)
         //allWords = repository.allWords
+        entireInventory = repository.entireInventory
+
     }
 
     //create a wrapper insert method that calls the repository's insert method.
@@ -44,4 +48,8 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
     fun insert(cocktail: Cocktail) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(cocktail)
     }
+
+//    fun searchIngredients(term: String): List<IngredientFts> {
+//        return repository.searchIngredients(term)
+//    }
 }

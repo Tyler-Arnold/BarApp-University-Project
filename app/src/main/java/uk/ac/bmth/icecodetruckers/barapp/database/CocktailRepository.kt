@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 
 class CocktailRepository(private val cocktailDao: CocktailDao) {
     //val allWords: LiveData<List<Word>> = wordDao.getAllWords()
+    var entireInventory: LiveData<List<CocktailDao.InventoryTuple>> = cocktailDao.getEntireInventory()
 
     //wrapper for insert method, must call on non-ui thread or app will crash
     //use @WorkerThread to mark the method needs to be called on a non-ui thread
@@ -38,4 +39,9 @@ class CocktailRepository(private val cocktailDao: CocktailDao) {
     suspend fun insert(cocktail: Cocktail) {
         cocktailDao.insert(cocktail)
     }
+
+//    @WorkerThread
+//    fun searchIngredients(term: String): List<IngredientFts> {
+//        return cocktailDao.searchIngredients(term)
+//    }
 }

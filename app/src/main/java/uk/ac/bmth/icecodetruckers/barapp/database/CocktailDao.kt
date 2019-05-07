@@ -4,12 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 
 @Dao
 interface CocktailDao {
 
-    @Query("SELECT * FROM inventories")
-    fun getEntireInventory(): List<Inventory>
+    data class InventoryTuple(
+        val id: Int,
+        val name: String
+    )
+
+    @Query("SELECT inventories.id, ingredients.name FROM inventories INNER JOIN ingredients ON inventories.ingredientId=ingredients.id")
+    fun getEntireInventory(): LiveData<List<InventoryTuple>>
 
     @Query("SELECT * FROM ingredients")
     fun getAllIngredients(): List<Ingredient>
@@ -34,6 +40,11 @@ interface CocktailDao {
 
     @Insert
     suspend fun insert(cocktail: Cocktail)
+
+//    @Transaction
+//    @Query ("SELECT ingredients.id, ingredients.name FROM ingredients" +
+//            "JOIN ingredientsFts ON (ingredients.id = ingredientsFts.id) WHERE ingredientsFts MATCH :term")
+//    fun searchIngredients(term: String): List<IngredientFts>
 
     //TODO Add other deletes
     @Query("DELETE FROM inventories")

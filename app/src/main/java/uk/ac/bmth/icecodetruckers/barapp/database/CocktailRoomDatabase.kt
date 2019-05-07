@@ -4,12 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(User::class, Inventory::class, Ingredient::class, IngredientProductLink::class, Product::class, Cocktail::class), version = 1)
+@Database(entities = arrayOf(User::class, Inventory::class, Ingredient::class, IngredientProductLink::class, Product::class, Cocktail::class), version = 2)
 public abstract class CocktailRoomDatabase : RoomDatabase() {
 
     abstract fun cocktailDao(): CocktailDao
@@ -28,14 +29,21 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    CocktailRoomDatabase::class.java,
-                    "Word_database"
-                ).addCallback(WordDatabaseCallback(scope))
+                    CocktailRoomDatabase::class.java, "Word_database"
+                ).fallbackToDestructiveMigration()
+                    .addCallback(WordDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 return instance
             }
         }
+
+//        private val MIGRATION_1_2 = object : Migration(1, 2) {
+//            override fun migrate(database: SupportSQLiteDatabase) {
+//                database.execSQL("CREATE VIRTUAL TABLE IF NOT EXISTS `ingredientsFts` USING FTS4(`name`, content=`ingredients`)")
+//                database.execSQL("INSERT INTO ingredientsFts(ingredientsFts) VALUES ('rebuild')")
+//            }
+//        }
 
         private class WordDatabaseCallback(
             private val scope: CoroutineScope
@@ -54,20 +62,20 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
         suspend fun populateDatabase(cocktailDao: CocktailDao) {
             cocktailDao.deleteAllInventory()
 
-            var user = User(0, "Test User", "nopass")
-            cocktailDao.insert(user)
-
-            var ingredient = Ingredient(0, "White Rum")
-            cocktailDao.insert(ingredient)
+//            var user = User(0, "Test User", "nopass")
+//            cocktailDao.insert(user)
+//
+//            var ingredient = Ingredient(0, "White Rum")
+//            cocktailDao.insert(ingredient)
 
             var inventory = Inventory(0, 0, 0)
             cocktailDao.insert(inventory)
 
-            var product = Product(0, "Captain Morgan's White Rum", 15.99, "https://www.example.com/")
-            cocktailDao.insert(product)
-
-            var ingredientProductLink = IngredientProductLink(0, 0, 0)
-            cocktailDao.insert(ingredientProductLink)
+//            var product = Product(0, "Captain Morgan's White Rum", 15.99, "https://www.example.com/")
+//            cocktailDao.insert(product)
+//
+//            var ingredientProductLink = IngredientProductLink(0, 0, 0)
+//            cocktailDao.insert(ingredientProductLink)
         }
 
 

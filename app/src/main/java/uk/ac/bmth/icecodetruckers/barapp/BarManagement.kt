@@ -1,12 +1,19 @@
 package uk.ac.bmth.icecodetruckers.barapp
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import uk.ac.bmth.icecodetruckers.barapp.database.CocktailViewModel
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,6 +35,7 @@ class BarManagement : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var cocktailViewModel: CocktailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +50,21 @@ class BarManagement : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bar_management, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_bar_management, container, false)
+
+        cocktailViewModel = ViewModelProviders.of(this).get(CocktailViewModel::class.java)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
+        val adapter = CocktailListAdapter(this.activity!!.applicationContext)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
+
+        cocktailViewModel.entireInventory.observe(this, Observer { inventories ->
+            // Update the cached copy of the words in the adapter.
+            inventories?.let { adapter.setInventories(it) }
+        })
+
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
