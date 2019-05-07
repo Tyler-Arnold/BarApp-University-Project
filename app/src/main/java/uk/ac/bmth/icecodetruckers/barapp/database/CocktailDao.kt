@@ -47,6 +47,16 @@ interface CocktailDao {
 //    fun searchIngredients(term: String): List<IngredientFts>
 
     //TODO Add other deletes
+    @Query("DELETE FROM users")
+    fun deleteAllUser()
     @Query("DELETE FROM inventories")
     fun deleteAllInventory()
+    @Query("DELETE FROM ingredients")
+    fun deleteAllIngredient()
+    @Query("DELETE FROM ingredient_product_link")
+    fun deleteAllIngredientProductLink()
+    @Query("DELETE FROM products")
+    fun deleteAllProduct()
+    @Query("DELETE FROM cocktails")
+    fun deleteAllCocktail()
 }

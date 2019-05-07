@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(User::class, Inventory::class, Ingredient::class, IngredientProductLink::class, Product::class, Cocktail::class), version = 2)
+@Database(entities = arrayOf(User::class, Inventory::class, Ingredient::class, IngredientProductLink::class, Product::class, Cocktail::class), version = 3)
 public abstract class CocktailRoomDatabase : RoomDatabase() {
 
     abstract fun cocktailDao(): CocktailDao
@@ -60,22 +60,33 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(cocktailDao: CocktailDao) {
+            cocktailDao.deleteAllUser()
             cocktailDao.deleteAllInventory()
+            cocktailDao.deleteAllIngredient()
+            cocktailDao.deleteAllIngredientProductLink()
+            cocktailDao.deleteAllProduct()
+            cocktailDao.deleteAllCocktail()
 
-//            var user = User(0, "Test User", "nopass")
-//            cocktailDao.insert(user)
-//
-//            var ingredient = Ingredient(0, "White Rum")
-//            cocktailDao.insert(ingredient)
+            var user = User(0, "Test User", "nopass")
+            cocktailDao.insert(user)
+
+            var ingredient = Ingredient(0, "White Rum")
+            cocktailDao.insert(ingredient)
+
+            ingredient = Ingredient(1, "Dark Rum")
+            cocktailDao.insert(ingredient)
 
             var inventory = Inventory(0, 0, 0)
             cocktailDao.insert(inventory)
 
-//            var product = Product(0, "Captain Morgan's White Rum", 15.99, "https://www.example.com/")
-//            cocktailDao.insert(product)
-//
-//            var ingredientProductLink = IngredientProductLink(0, 0, 0)
-//            cocktailDao.insert(ingredientProductLink)
+            inventory = Inventory(1, 0, 1)
+            cocktailDao.insert(inventory)
+
+            var product = Product(0, "Captain Morgan's White Rum", 15.99, "https://www.example.com/")
+            cocktailDao.insert(product)
+
+            var ingredientProductLink = IngredientProductLink(0, 0, 0)
+            cocktailDao.insert(ingredientProductLink)
         }
 
 
