@@ -34,12 +34,10 @@ class CocktailListAdapter internal constructor (
 
         // Remove an Item
         // I know this shouldn't be in the adapter, but I don't care anymore
-        holder.cocktailRemoveButton.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                val inventory = Inventory(current.id, current.userId, current.ingredientId)
-                cocktailViewModel.delete(inventory)
-            }
-        })
+        holder.cocktailRemoveButton.setOnClickListener {
+            val inventory = Inventory(current.id, current.userId, current.ingredientId)
+            cocktailViewModel.delete(inventory)
+        }
     }
 
     internal fun setInventories(inventories: List<CocktailDao.InventoryTuple>) {

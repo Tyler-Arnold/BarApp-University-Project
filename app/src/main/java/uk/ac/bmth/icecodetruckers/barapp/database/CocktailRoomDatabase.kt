@@ -76,10 +76,19 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
             ingredient = Ingredient(1, "Dark Rum")
             cocktailDao.insert(ingredient)
 
+            ingredient = Ingredient(2, "Simple Syrup")
+            cocktailDao.insert(ingredient)
+
+            ingredient = Ingredient(3, "Lime Juice")
+            cocktailDao.insert(ingredient)
+
             var inventory = Inventory(0, 0, 0)
             cocktailDao.insert(inventory)
 
-            inventory = Inventory(1, 0, 1)
+            inventory = Inventory(1, 0, 2)
+            cocktailDao.insert(inventory)
+
+            inventory = Inventory(2, 0, 3)
             cocktailDao.insert(inventory)
 
             var product = Product(0, "Captain Morgan's White Rum", 15.99, "https://www.example.com/")
