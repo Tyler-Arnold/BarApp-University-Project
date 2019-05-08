@@ -1,7 +1,9 @@
 package uk.ac.bmth.icecodetruckers.barapp
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -46,6 +48,11 @@ class MainActivity : AppCompatActivity(),
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    fun addIngredient( view: View){
+        val intent = Intent(this, AddIngredient::class.java)
+        startActivity(intent)
     }
 
 

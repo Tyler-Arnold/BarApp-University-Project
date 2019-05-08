@@ -43,6 +43,7 @@ class BarManagement : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -85,6 +86,13 @@ class BarManagement : Fragment() {
         super.onDetach()
         listener = null
     }
+
+
+    fun addIngredient( view: View){
+        val intent = Intent(activity, AddIngredient::class.java)
+        startActivity(intent)
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
