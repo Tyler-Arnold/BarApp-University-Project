@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import uk.ac.bmth.icecodetruckers.barapp.database.*
@@ -53,7 +52,7 @@ class BarManagement : Fragment() {
 
         //set up the recycler view
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = CocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel)
+        val adapter = CocktailInventoryListAdapter(this.activity!!.applicationContext, cocktailViewModel)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 

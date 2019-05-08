@@ -1,6 +1,5 @@
 package uk.ac.bmth.icecodetruckers.barapp
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import uk.ac.bmth.icecodetruckers.barapp.database.*
 
-class CocktailListAdapter internal constructor (
+class CocktailInventoryListAdapter internal constructor (
     context: Context,
     var cocktailViewModel: CocktailViewModel
-) : RecyclerView.Adapter<CocktailListAdapter.CocktailViewHolder>(){
+) : RecyclerView.Adapter<CocktailInventoryListAdapter.CocktailViewHolder>(){
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var inventories = emptyList<CocktailDao.InventoryTuple>() // Cached copy of ingredients
 
