@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".CocktailRecipe">
 
-    <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_height="wrap_content"
+        android:src="@drawable/daiquiri" />
 
     <TextView
+        android:id="@+id/textViewCocktailName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Daiquiri"
+        android:textAlignment="center"
+        android:textSize="36sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textViewCocktailIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingredients"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewCocktailIngredientsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="45ml White Rum \n20ml Simple Syrup \n30ml Lime Juice" />
+
+    <TextView
+        android:id="@+id/textViewCocktailRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewCocktailRecipeBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. Pour all ingredients into shaker full of ice cubes \n2. Shake well for 10 seconds \n3. Double-strain into chilled cocktail glass" />
+
+</LinearLayout>
