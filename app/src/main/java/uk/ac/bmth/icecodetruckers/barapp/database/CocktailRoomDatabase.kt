@@ -109,10 +109,13 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
             var ingredientInCocktail = IngredientsInCocktail(0, 0, 0)
             cocktailDao.insert(ingredientInCocktail)
 
-            ingredientInCocktail = IngredientsInCocktail(0, 0, 2)
+            ingredientInCocktail = IngredientsInCocktail(1, 0, 2)
             cocktailDao.insert(ingredientInCocktail)
 
-            ingredientInCocktail = IngredientsInCocktail(0, 0, 3)
+            ingredientInCocktail = IngredientsInCocktail(2, 0, 3)
+            cocktailDao.insert(ingredientInCocktail)
+
+            ingredientInCocktail = IngredientsInCocktail(3, 1, 3)
             cocktailDao.insert(ingredientInCocktail)
         }
 

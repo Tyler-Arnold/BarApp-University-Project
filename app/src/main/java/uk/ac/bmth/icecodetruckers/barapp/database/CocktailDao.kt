@@ -22,6 +22,12 @@ interface CocktailDao {
     @Query("SELECT * FROM products")
     fun getAllProducts(): List<Product>
 
+    @Query("SELECT * FROM cocktails")
+    suspend fun getAllCocktails(): List<Cocktail>
+
+    @Query("SELECT * FROM ingredients_in_cocktail")
+    suspend fun getAllIngredientsInCocktail(): List<IngredientsInCocktail>
+
     @Insert
     suspend fun insert(user: User)
 
