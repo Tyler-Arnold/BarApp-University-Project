@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(User::class, Inventory::class, Ingredient::class, IngredientProductLink::class, Product::class, Cocktail::class), version = 3)
+@Database(entities = arrayOf(User::class, Inventory::class, Ingredient::class, IngredientProductLink::class, Product::class, Cocktail::class, IngredientsInCocktail::class), version = 4)
 public abstract class CocktailRoomDatabase : RoomDatabase() {
 
     abstract fun cocktailDao(): CocktailDao
