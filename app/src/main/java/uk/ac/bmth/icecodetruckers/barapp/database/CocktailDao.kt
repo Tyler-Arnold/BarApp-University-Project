@@ -40,6 +40,9 @@ interface CocktailDao {
     @Insert
     suspend fun insert(cocktail: Cocktail)
 
+    @Insert
+    suspend fun insert(ingredientsInCocktail: IngredientsInCocktail)
+
 //    @Transaction
 //    @Query ("SELECT ingredients.id, ingredients.name FROM ingredients" +
 //            "JOIN ingredientsFts ON (ingredients.id = ingredientsFts.id) WHERE ingredientsFts MATCH :term")
@@ -58,6 +61,8 @@ interface CocktailDao {
     fun deleteAllProduct()
     @Query("DELETE FROM cocktails")
     fun deleteAllCocktail()
+    @Query("DELETE FROM ingredients_in_cocktail")
+    fun deleteAllIngredientsInCocktail()
 
     @Delete
     fun delete(inventory: Inventory)

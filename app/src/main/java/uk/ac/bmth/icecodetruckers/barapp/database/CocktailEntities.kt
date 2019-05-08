@@ -49,8 +49,16 @@ data class Cocktail(
     @PrimaryKey val id: Int,
     val name: String,
     val description: String,
+    val ingredients: String,
     val recipe: String,
     val imagePath: String
+)
+
+@Entity(tableName = "ingredients_in_cocktail")
+data class IngredientsInCocktail(
+    @PrimaryKey val id: Int,
+    val cocktailId: Int,
+    val ingredientId: Int
 )
 //
 //@Fts4(contentEntity = Ingredient::class)
