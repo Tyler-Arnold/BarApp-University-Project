@@ -46,24 +46,25 @@ class BarManagement : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_bar_management, container, false)
 
+        //get the view model, so I can do database stuff from here, even though I shouldn't
         cocktailViewModel = ViewModelProviders.of(this).get(CocktailViewModel::class.java)
 
+        //set up the recycler view
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = CocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 
+        //observe the inventory LiveData
         cocktailViewModel.entireInventory.observe(this, Observer { inventories ->
             // Update the cached copy of the words in the adapter.
             inventories?.let { adapter.setInventories(it) }
         })
+
         return view
     }
 
