@@ -3,22 +3,19 @@ package uk.ac.bmth.icecodetruckers.barapp.database
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 
-class CocktailRepository(private val cocktailDao: CocktailDao) {
-    //val allWords: LiveData<List<Word>> = wordDao.getAllWords()
-    var entireInventory: LiveData<List<CocktailDao.InventoryTuple>> = cocktailDao.getEntireInventory()
 
+class FavouritesRepository(private val cocktailDao: CocktailDao) {
+    //val allWords: LiveData<List<Word>> = wordDao.getAllWords()
+
+    var entireFavourite: LiveData<List<CocktailDao.FavouriteTuple>> = cocktailDao.getEntireFavourite()
 
     //wrapper for insert method, must call on non-ui thread or app will crash
     //use @WorkerThread to mark the method needs to be called on a non-ui thread
     //add suspend modifier to tell compiler that this needs to be called from a coroutine or suspending function
+
     @WorkerThread
     suspend fun insert(user: User) {
         cocktailDao.insert(user)
-    }
-
-    @WorkerThread
-    suspend fun insert(inventory: Inventory) {
-        cocktailDao.insert(inventory)
     }
 
     @WorkerThread
@@ -42,8 +39,13 @@ class CocktailRepository(private val cocktailDao: CocktailDao) {
     }
 
     @WorkerThread
-    suspend fun delete(inventory: Inventory){
-        cocktailDao.deleteInv(inventory)
+    suspend fun insert(favourite: Favourite) {
+        cocktailDao.insert(favourite)
+    }
+
+    @WorkerThread
+    suspend fun delete(favourite: Favourite){
+        cocktailDao.deleteFav(favourite)
     }
 
 //    @WorkerThread

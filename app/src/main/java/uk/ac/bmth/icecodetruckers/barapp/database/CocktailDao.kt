@@ -13,20 +13,22 @@ interface CocktailDao {
         val name: String
     )
 
+    data class FavouriteTuple(
+        val id: Int,
+        val name: String
+    )
+
     @Query("SELECT inventories.id, inventories.userId, inventories.ingredientId, ingredients.name FROM inventories INNER JOIN ingredients ON inventories.ingredientId=ingredients.id")
     fun getEntireInventory(): LiveData<List<InventoryTuple>>
+
+    @Query("SELECT favourites.id, favourites.name FROM favourites")
+    fun getEntireFavourite(): LiveData<List<FavouriteTuple>>
 
     @Query("SELECT * FROM ingredients")
     fun getAllIngredients(): List<Ingredient>
 
     @Query("SELECT * FROM products")
     fun getAllProducts(): List<Product>
-
-    @Query("SELECT * FROM cocktails")
-    suspend fun getAllCocktails(): List<Cocktail>
-
-    @Query("SELECT * FROM ingredients_in_cocktail")
-    suspend fun getAllIngredientsInCocktail(): List<IngredientsInCocktail>
 
     @Insert
     suspend fun insert(user: User)
@@ -47,7 +49,7 @@ interface CocktailDao {
     suspend fun insert(cocktail: Cocktail)
 
     @Insert
-    suspend fun insert(ingredientsInCocktail: IngredientsInCocktail)
+    suspend fun insert(favourite: Favourite)
 
 //    @Transaction
 //    @Query ("SELECT ingredients.id, ingredients.name FROM ingredients" +
@@ -57,19 +59,28 @@ interface CocktailDao {
     //TODO Add other deletes
     @Query("DELETE FROM users")
     fun deleteAllUser()
+
     @Query("DELETE FROM inventories")
     fun deleteAllInventory()
+
     @Query("DELETE FROM ingredients")
     fun deleteAllIngredient()
+
     @Query("DELETE FROM ingredient_product_link")
     fun deleteAllIngredientProductLink()
+
     @Query("DELETE FROM products")
     fun deleteAllProduct()
+
     @Query("DELETE FROM cocktails")
     fun deleteAllCocktail()
-    @Query("DELETE FROM ingredients_in_cocktail")
-    fun deleteAllIngredientsInCocktail()
+
+    @Query( "DELETE FROM favourites")
+    fun deleteAllFavourites()
 
     @Delete
-    fun delete(inventory: Inventory)
+    fun deleteInv(inventory: Inventory)
+
+    @Delete
+    fun deleteFav(favourite: Favourite)
 }

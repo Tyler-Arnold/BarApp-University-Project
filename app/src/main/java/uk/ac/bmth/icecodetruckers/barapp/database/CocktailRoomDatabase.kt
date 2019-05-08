@@ -10,7 +10,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(User::class, Inventory::class, Ingredient::class, IngredientProductLink::class, Product::class, Cocktail::class, IngredientsInCocktail::class), version = 4)
+@Database(entities = arrayOf(User::class, Inventory::class, Ingredient::class, IngredientProductLink::class, Product::class, Cocktail::class, Favourite::class
+), version = 9)
 public abstract class CocktailRoomDatabase : RoomDatabase() {
 
     abstract fun cocktailDao(): CocktailDao
@@ -19,8 +20,9 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: CocktailRoomDatabase? = null
 
-        fun getDatabase(context: Context,
-                        scope: CoroutineScope
+        fun getDatabase(
+            context: Context,
+            scope: CoroutineScope
         ): CocktailRoomDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
@@ -66,7 +68,7 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
             cocktailDao.deleteAllIngredientProductLink()
             cocktailDao.deleteAllProduct()
             cocktailDao.deleteAllCocktail()
-            cocktailDao.deleteAllIngredientsInCocktail()
+            cocktailDao.deleteAllFavourites()
 
             var user = User(0, "Test User", "nopass")
             cocktailDao.insert(user)
@@ -77,19 +79,34 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
             ingredient = Ingredient(1, "Dark Rum")
             cocktailDao.insert(ingredient)
 
-            ingredient = Ingredient(2, "Simple Syrup")
+            ingredient = Ingredient(2, "White Rum")
             cocktailDao.insert(ingredient)
 
-            ingredient = Ingredient(3, "Lime Juice")
+            ingredient = Ingredient(3, "Dark R")
             cocktailDao.insert(ingredient)
+
+            ingredient = Ingredient(4, "Whitm")
+            cocktailDao.insert(ingredient)
+
+            ingredient = Ingredient(5, "D Rum")
+            cocktailDao.insert(ingredient)
+
+            var favourite = Favourite(0, "Pornstar Martini")
+            cocktailDao.insert(favourite)
+
+            favourite = Favourite(1, "Black Russian")
+            cocktailDao.insert(favourite)
+
+            favourite = Favourite(2, "Malibu Swash")
+            cocktailDao.insert(favourite)
+
+            favourite = Favourite(3, "Margarita")
+            cocktailDao.insert(favourite)
 
             var inventory = Inventory(0, 0, 0)
             cocktailDao.insert(inventory)
 
-            inventory = Inventory(1, 0, 2)
-            cocktailDao.insert(inventory)
-
-            inventory = Inventory(2, 0, 3)
+            inventory = Inventory(1, 0, 1)
             cocktailDao.insert(inventory)
 
             var product = Product(0, "Captain Morgan's White Rum", 15.99, "https://www.example.com/")
@@ -97,26 +114,6 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
 
             var ingredientProductLink = IngredientProductLink(0, 0, 0)
             cocktailDao.insert(ingredientProductLink)
-
-            var cocktail = Cocktail(0, "Daiquiri", "Sweet, sour, refreshing",
-                "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
-                "1. Pour all ingredients into shaker full of ice\n" +
-                        "2. Shake well for 10 seconds\n" +
-                        "3. Double-strain into a chilled cocktail glass",
-                "none")
-            cocktailDao.insert(cocktail)
-
-            var ingredientInCocktail = IngredientsInCocktail(0, 0, 0)
-            cocktailDao.insert(ingredientInCocktail)
-
-            ingredientInCocktail = IngredientsInCocktail(1, 0, 2)
-            cocktailDao.insert(ingredientInCocktail)
-
-            ingredientInCocktail = IngredientsInCocktail(2, 0, 3)
-            cocktailDao.insert(ingredientInCocktail)
-
-            ingredientInCocktail = IngredientsInCocktail(3, 1, 3)
-            cocktailDao.insert(ingredientInCocktail)
         }
 
 

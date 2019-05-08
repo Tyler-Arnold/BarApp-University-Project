@@ -7,6 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import uk.ac.bmth.icecodetruckers.barapp.database.CocktailViewModel
+import uk.ac.bmth.icecodetruckers.barapp.database.FavouriteViewModel
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,6 +34,8 @@ class MainPage : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var cocktailViewModel: CocktailViewModel
+    private lateinit var favViewModel: FavouriteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +50,35 @@ class MainPage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_page, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_main_page, container, false)
+
+        cocktailViewModel = ViewModelProviders.of(this).get(CocktailViewModel::class.java)
+
+        favViewModel = ViewModelProviders.of(this).get(FavouriteViewModel::class.java)
+
+        val favView = view.findViewById<RecyclerView>(R.id.favourite_view)
+        val popularView = view.findViewById<RecyclerView>(R.id.popular_view)
+
+        val popularAdapter = CocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel)
+
+        val favAdapter = FavouritelListAdapter(this.activity!!.applicationContext, favViewModel)
+
+        favView.adapter = favAdapter
+        popularView.adapter = popularAdapter
+
+        popularView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
+        favView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
+
+        cocktailViewModel.entireInventory.observe(this, Observer { inventories ->
+            // Update the cached copy of the words in the adapter.
+            inventories?.let { popularAdapter.setInventories(it) }
+        })
+
+        favViewModel.entireFavourite.observe(this, Observer { favourites ->
+
+            favourites?.let { favAdapter.setInventories(it) }
+        })
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
