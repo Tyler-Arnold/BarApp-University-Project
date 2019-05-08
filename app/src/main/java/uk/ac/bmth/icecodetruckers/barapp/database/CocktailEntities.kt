@@ -16,16 +16,7 @@ data class User(
     val passwordHash: String
 )
 
-@Entity(tableName = "inventories", foreignKeys = arrayOf(ForeignKey (
-    entity = User::class,
-    parentColumns = arrayOf("id"),
-    childColumns = arrayOf("userId")
-    ), ForeignKey(
-    entity = Ingredient::class,
-    parentColumns = arrayOf("id"),
-    childColumns = arrayOf("ingredientId")
-    ))
-)
+@Entity(tableName = "inventories")
 data class Inventory(
     @PrimaryKey val id: Int,
     val userId: Int,
@@ -38,16 +29,7 @@ data class Ingredient(
     val name: String
 )
 
-@Entity(tableName = "ingredient_product_link", foreignKeys = arrayOf(ForeignKey (
-    entity = Ingredient::class,
-    parentColumns = arrayOf("id"),
-    childColumns = arrayOf("ingredientId")
-), ForeignKey(
-    entity = Product::class,
-    parentColumns = arrayOf("id"),
-    childColumns = arrayOf("productId")
-))
-)
+@Entity(tableName = "ingredient_product_link")
 data class IngredientProductLink(
     @PrimaryKey val id: Int,
     val ingredientId: Int,

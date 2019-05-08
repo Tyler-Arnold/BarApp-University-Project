@@ -1,6 +1,7 @@
 package uk.ac.bmth.icecodetruckers.barapp.database
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -20,6 +21,8 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
         repository = CocktailRepository(cocktailDao)
         //allWords = repository.allWords
         entireInventory = repository.entireInventory
+
+
 
     }
 
@@ -47,6 +50,10 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
 
     fun insert(cocktail: Cocktail) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(cocktail)
+    }
+
+    fun delete(inventory: Inventory) = viewModelScope.launch(Dispatchers.IO) {
+        repository.delete(inventory)
     }
 
 //    fun searchIngredients(term: String): List<IngredientFts> {

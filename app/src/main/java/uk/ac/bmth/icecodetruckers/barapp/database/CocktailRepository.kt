@@ -40,6 +40,11 @@ class CocktailRepository(private val cocktailDao: CocktailDao) {
         cocktailDao.insert(cocktail)
     }
 
+    @WorkerThread
+    suspend fun delete(inventory: Inventory){
+        cocktailDao.delete(inventory)
+    }
+
 //    @WorkerThread
 //    fun searchIngredients(term: String): List<IngredientFts> {
 //        return cocktailDao.searchIngredients(term)
