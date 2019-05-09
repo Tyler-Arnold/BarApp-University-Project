@@ -15,6 +15,12 @@
         android:textAlignment="center"
         android:textSize="36sp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="317dp"
+        android:src="@drawable/cocktail_image" />
+
     <TextView
         android:id="@+id/textViewCocktailIngredients"
         android:layout_width="match_parent"
