@@ -25,7 +25,11 @@
         android:id="@+id/barManagement"
         android:name="uk.ac.bmth.icecodetruckers.barapp.BarManagement"
         android:label="Bar Management"
-        tools:layout="@layout/fragment_bar_management" />
+        tools:layout="@layout/fragment_bar_management" >
+        <action
+            android:id="@+id/action_barManagement_to_cocktailRecipe"
+            app:destination="@id/cocktailRecipe" />
+    </fragment>
 
     <fragment
         android:id="@+id/cocktailCalculator"

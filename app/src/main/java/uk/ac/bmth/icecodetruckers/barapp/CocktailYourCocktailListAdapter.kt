@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import uk.ac.bmth.icecodetruckers.barapp.database.*
@@ -36,7 +37,11 @@ class CocktailYourCocktailListAdapter internal constructor (
             val cocktailId = current.id
             var bundle: Bundle = Bundle()
             bundle.putInt("COCKTAIL", cocktailId)
-            navController.navigate(R.id.action_mainPage_to_cocktailRecipe, bundle)
+            if (navController.currentDestination!!.id == R.id.barManagement){
+                navController.navigate(R.id.action_barManagement_to_cocktailRecipe, bundle)
+            } else {
+                navController.navigate(R.id.action_mainPage_to_cocktailRecipe, bundle)
+            }
         }
 
     }
