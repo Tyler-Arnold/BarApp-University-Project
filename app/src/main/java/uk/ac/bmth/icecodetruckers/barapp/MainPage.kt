@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import uk.ac.bmth.icecodetruckers.barapp.database.CocktailViewModel
@@ -49,12 +50,14 @@ class MainPage : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main_page, container, false)
 
+        val navController = findNavController()
+
         //get the view model, so I can do database stuff from here, even though I shouldn't
         cocktailViewModel = ViewModelProviders.of(this).get(CocktailViewModel::class.java)
 
         //set up the recycler view
         val cocktailRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerview_main_page_cocktails)
-        val cocktailAdapter = CocktailYourCocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel)
+        val cocktailAdapter = CocktailYourCocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel, navController)
         cocktailRecyclerView.adapter = cocktailAdapter
         cocktailRecyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 

@@ -73,40 +73,39 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
 
             var ingredient = Ingredient(0, "White Rum")
             cocktailDao.insert(ingredient)
-
             ingredient = Ingredient(1, "Dark Rum")
             cocktailDao.insert(ingredient)
-
             ingredient = Ingredient(2, "Simple Syrup")
             cocktailDao.insert(ingredient)
-
             ingredient = Ingredient(3, "Lime Juice")
             cocktailDao.insert(ingredient)
-
             ingredient = Ingredient(4, "Gin")
             cocktailDao.insert(ingredient)
-
             ingredient = Ingredient(5, "Tonic")
             cocktailDao.insert(ingredient)
-
             ingredient = Ingredient(6, "Lemon Juice")
             cocktailDao.insert(ingredient)
-
             ingredient = Ingredient(7, "Soda Water")
+            cocktailDao.insert(ingredient)
+            ingredient = Ingredient(8, "Cola")
+            cocktailDao.insert(ingredient)
+            ingredient = Ingredient(9, "Ginger Beer")
+            cocktailDao.insert(ingredient)
+            ingredient = Ingredient(10, "Vodka")
+            cocktailDao.insert(ingredient)
+            ingredient = Ingredient(11, "Whiskey")
+            cocktailDao.insert(ingredient)
+            ingredient = Ingredient(12, "Bitters")
             cocktailDao.insert(ingredient)
 
 //            var inventory = Inventory(0, 0, 0)
 //            cocktailDao.insert(inventory)
-//
 //            inventory = Inventory(1, 0, 1)
 //            cocktailDao.insert(inventory)
-//
 //            inventory = Inventory(2, 0, 2)
 //            cocktailDao.insert(inventory)
-//
 //            inventory = Inventory(3, 0, 3)
 //            cocktailDao.insert(inventory)
-//
 //            inventory = Inventory(4, 0, 3)
 //            cocktailDao.insert(inventory)
 
@@ -123,7 +122,6 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
                         "3. Double-strain into a chilled cocktail glass",
                 "none")
             cocktailDao.insert(cocktail)
-
             cocktail = Cocktail(1, "Gin & Tonic", "Sweet, sour, refreshing",
                 "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
                 "1. Pour all ingredients into shaker full of ice\n" +
@@ -131,8 +129,28 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
                         "3. Double-strain into a chilled cocktail glass",
                 "none")
             cocktailDao.insert(cocktail)
-
             cocktail = Cocktail(2, "Tom Collins", "Sweet, sour, refreshing",
+                "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
+                "1. Pour all ingredients into shaker full of ice\n" +
+                        "2. Shake well for 10 seconds\n" +
+                        "3. Double-strain into a chilled cocktail glass",
+                "none")
+            cocktailDao.insert(cocktail)
+            cocktail = Cocktail(3, "Cuba Libre", "Sweet, sour, refreshing",
+                "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
+                "1. Pour all ingredients into shaker full of ice\n" +
+                        "2. Shake well for 10 seconds\n" +
+                        "3. Double-strain into a chilled cocktail glass",
+                "none")
+            cocktailDao.insert(cocktail)
+            cocktail = Cocktail(4, "Dark & Stormy", "Sweet, sour, refreshing",
+            "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
+            "1. Pour all ingredients into shaker full of ice\n" +
+                    "2. Shake well for 10 seconds\n" +
+                    "3. Double-strain into a chilled cocktail glass",
+            "none")
+            cocktailDao.insert(cocktail)
+            cocktail = Cocktail(5, "Vodka Soda", "Sweet, sour, refreshing",
                 "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
                 "1. Pour all ingredients into shaker full of ice\n" +
                         "2. Shake well for 10 seconds\n" +
@@ -142,29 +160,35 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
 
             var ingredientInCocktail = IngredientsInCocktail(0, 0, 0) // Daiquiri (my favourite)
             cocktailDao.insert(ingredientInCocktail)
-
             ingredientInCocktail = IngredientsInCocktail(1, 0, 2)
             cocktailDao.insert(ingredientInCocktail)
-
             ingredientInCocktail = IngredientsInCocktail(2, 0, 3)
             cocktailDao.insert(ingredientInCocktail)
-
             ingredientInCocktail = IngredientsInCocktail(3, 1, 4) // Gin & Tonic
             cocktailDao.insert(ingredientInCocktail)
-
             ingredientInCocktail = IngredientsInCocktail(4, 1, 5)
             cocktailDao.insert(ingredientInCocktail)
-
             ingredientInCocktail = IngredientsInCocktail(5, 2, 2) // Tom Collins
             cocktailDao.insert(ingredientInCocktail)
-
             ingredientInCocktail = IngredientsInCocktail(6, 2, 4)
             cocktailDao.insert(ingredientInCocktail)
-
             ingredientInCocktail = IngredientsInCocktail(7, 2, 6)
             cocktailDao.insert(ingredientInCocktail)
-
             ingredientInCocktail = IngredientsInCocktail(8, 2, 7)
+            cocktailDao.insert(ingredientInCocktail)
+            ingredientInCocktail = IngredientsInCocktail(9, 3, 0) // Cuba Libre
+            cocktailDao.insert(ingredientInCocktail)
+            ingredientInCocktail = IngredientsInCocktail(10, 3, 3)
+            cocktailDao.insert(ingredientInCocktail)
+            ingredientInCocktail = IngredientsInCocktail(11, 3, 8)
+            cocktailDao.insert(ingredientInCocktail)
+            ingredientInCocktail = IngredientsInCocktail(12, 4, 1) // Dark & Stormy
+            cocktailDao.insert(ingredientInCocktail)
+            ingredientInCocktail = IngredientsInCocktail(13, 4, 9)
+            cocktailDao.insert(ingredientInCocktail)
+            ingredientInCocktail = IngredientsInCocktail(14, 5, 7) // Vodka Soda
+            cocktailDao.insert(ingredientInCocktail)
+            ingredientInCocktail = IngredientsInCocktail(15, 5, 10)
             cocktailDao.insert(ingredientInCocktail)
         }
 

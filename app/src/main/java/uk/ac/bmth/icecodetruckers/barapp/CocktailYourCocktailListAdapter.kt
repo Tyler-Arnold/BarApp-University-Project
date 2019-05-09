@@ -1,16 +1,20 @@
 package uk.ac.bmth.icecodetruckers.barapp
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import uk.ac.bmth.icecodetruckers.barapp.database.*
 
 class CocktailYourCocktailListAdapter internal constructor (
     context: Context,
-    var cocktailViewModel: CocktailViewModel
+    var cocktailViewModel: CocktailViewModel,
+    var navController: NavController
 ) : RecyclerView.Adapter<CocktailYourCocktailListAdapter.CocktailViewHolder>(){
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var cocktails = emptyList<Cocktail>() // Cached copy of ingredients
@@ -27,6 +31,13 @@ class CocktailYourCocktailListAdapter internal constructor (
     override fun onBindViewHolder(holder: CocktailViewHolder, position: Int) {
         val current = cocktails[position]
         holder.cocktailItemView.text = current.name
+
+        holder.cocktailItemView.setOnClickListener {
+            val cocktailId = current.id
+            var bundle: Bundle = Bundle()
+            bundle.putInt("COCKTAIL", cocktailId)
+            navController.navigate(R.id.action_mainPage_to_cocktailRecipe, bundle)
+        }
 
     }
 

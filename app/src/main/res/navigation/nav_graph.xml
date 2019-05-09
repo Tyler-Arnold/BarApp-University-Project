@@ -37,6 +37,11 @@
         android:id="@+id/cocktailRecipe"
         android:name="uk.ac.bmth.icecodetruckers.barapp.CocktailRecipe"
         android:label="Cocktail Recipe"
-        tools:layout="@layout/fragment_cocktail_recipe" />
+        tools:layout="@layout/fragment_cocktail_recipe" >
+        <argument
+            android:name="cocktail"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 
 </navigation>
