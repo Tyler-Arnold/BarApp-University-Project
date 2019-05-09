@@ -76,6 +76,9 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
             ingredient = Ingredient(1, "Dark Rum")
             cocktailDao.insert(ingredient)
 
+            ingredient = Ingredient(2, "Blue Rum")
+            cocktailDao.insert(ingredient)
+
             var inventory = Inventory(0, 0, 0)
             cocktailDao.insert(inventory)
 

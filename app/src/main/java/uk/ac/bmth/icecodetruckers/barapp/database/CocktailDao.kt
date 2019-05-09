@@ -17,7 +17,7 @@ interface CocktailDao {
     fun getEntireInventory(): LiveData<List<InventoryTuple>>
 
     @Query("SELECT * FROM ingredients")
-    fun getAllIngredients(): List<Ingredient>
+    fun getAllIngredients(): LiveData<List<Ingredient>>
 
     @Query("SELECT * FROM products")
     fun getAllProducts(): List<Product>

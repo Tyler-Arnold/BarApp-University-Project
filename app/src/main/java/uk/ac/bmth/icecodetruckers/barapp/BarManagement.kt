@@ -62,7 +62,7 @@ class BarManagement : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 
         cocktailViewModel.entireInventory.observe(this, Observer { inventories ->
-            // Update the cached copy of the words in the adapter.
+
             inventories?.let { adapter.setInventories(it) }
         })
         return view
@@ -92,10 +92,7 @@ class BarManagement : Fragment() {
     }
 
 
-    fun addIngredient( view: View){
-        val intent = Intent(activity, AddIngredient::class.java)
-        startActivity(intent)
-    }
+
 
 
     /**

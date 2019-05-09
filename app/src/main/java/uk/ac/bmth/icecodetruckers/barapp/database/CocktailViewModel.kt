@@ -14,6 +14,7 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
     private val repository: CocktailRepository
     //val allWords: LiveData<List<Word>>
     val entireInventory: LiveData<List<CocktailDao.InventoryTuple>>
+    val allingredients: LiveData<List<Ingredient>>
 
     init {
         //database retrieval
@@ -21,6 +22,8 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
         repository = CocktailRepository(cocktailDao)
         //allWords = repository.allWords
         entireInventory = repository.entireInventory
+        allingredients = repository.allingredients
+
 
 
 
