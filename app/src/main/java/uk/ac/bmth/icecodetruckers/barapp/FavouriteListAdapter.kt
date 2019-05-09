@@ -42,7 +42,7 @@ class FavouriteListAdapter internal constructor (
         })
     }
 
-    internal fun setInventories(inventories: List<CocktailDao.FavouriteTuple>) {
+    internal fun setFavourites(favourits: List<CocktailDao.FavouriteTuple>) {
         this.favourites = favourites
         notifyDataSetChanged()
     }

@@ -76,7 +76,7 @@ class MainPage : Fragment() {
 
         favViewModel.entireFavourite.observe(this, Observer { favourites ->
 
-            favourites?.let { favAdapter.setInventories(it) }
+            favourites?.let { favAdapter.setFavourites(it) }
         })
         return view
     }
