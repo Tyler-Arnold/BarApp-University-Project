@@ -122,39 +122,33 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
                         "3. Double-strain into a chilled cocktail glass",
                 "none")
             cocktailDao.insert(cocktail)
-            cocktail = Cocktail(1, "Gin & Tonic", "Sweet, sour, refreshing",
-                "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
-                "1. Pour all ingredients into shaker full of ice\n" +
-                        "2. Shake well for 10 seconds\n" +
-                        "3. Double-strain into a chilled cocktail glass",
+            cocktail = Cocktail(1, "Gin & Tonic", "The classic",
+                "60ml Gin \n120ml Tonic",
+                "1. Pour all ingredients into glass with ice",
                 "none")
             cocktailDao.insert(cocktail)
-            cocktail = Cocktail(2, "Tom Collins", "Sweet, sour, refreshing",
-                "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
-                "1. Pour all ingredients into shaker full of ice\n" +
+            cocktail = Cocktail(2, "Tom Collins", "Citrus-y and refreshing",
+                "45ml Gin \n20ml Simple Syrup \n30ml Lemon Juice\n" +
+                        "60ml Soda Water",
+                "1. Pour gin, lemon juice, and sugar syrup into shaker with ice\n" +
                         "2. Shake well for 10 seconds\n" +
-                        "3. Double-strain into a chilled cocktail glass",
+                        "3. Double-strain into a chilled collins glass full of ice\n" +
+                        "4. Top with soda water",
                 "none")
             cocktailDao.insert(cocktail)
-            cocktail = Cocktail(3, "Cuba Libre", "Sweet, sour, refreshing",
-                "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
-                "1. Pour all ingredients into shaker full of ice\n" +
-                        "2. Shake well for 10 seconds\n" +
-                        "3. Double-strain into a chilled cocktail glass",
+            cocktail = Cocktail(3, "Cuba Libre", "The classic rum and coke, with a twist",
+                "60ml White Rum \n30ml Lime Juice \nCola",
+                "1. Pour all ingredients into glass with ice",
                 "none")
             cocktailDao.insert(cocktail)
             cocktail = Cocktail(4, "Dark & Stormy", "Sweet, sour, refreshing",
-            "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
-            "1. Pour all ingredients into shaker full of ice\n" +
-                    "2. Shake well for 10 seconds\n" +
-                    "3. Double-strain into a chilled cocktail glass",
+            "45ml Dark Rum \nGinger Beer \nBitters",
+            "1. Pour all ingredients into glass full of ice, add a dash of bitters",
             "none")
             cocktailDao.insert(cocktail)
-            cocktail = Cocktail(5, "Vodka Soda", "Sweet, sour, refreshing",
-                "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
-                "1. Pour all ingredients into shaker full of ice\n" +
-                        "2. Shake well for 10 seconds\n" +
-                        "3. Double-strain into a chilled cocktail glass",
+            cocktail = Cocktail(5, "Vodka Soda", "A blank canvas",
+                "45ml Vodka \nSoda Water",
+                "1. Pour all ingredients into glass full of ice",
                 "none")
             cocktailDao.insert(cocktail)
 
