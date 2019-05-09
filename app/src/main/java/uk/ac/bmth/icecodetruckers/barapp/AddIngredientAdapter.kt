@@ -37,8 +37,15 @@ class AddIngredientAdapter internal constructor (
 
         holder.cocktailAddButton.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
-               // val inventory = Inventory(3, 0, current.id)
-               // cocktailViewModel.insert(inventory)
+                val entireInventory = cocktailViewModel.getEntireInventory()
+                var nextId: Int
+                nextId = if (entireInventory.isNullOrEmpty()) {
+                    0 // There's no inventory, ID should be 0
+                } else {
+                    entireInventory.last().id + 1
+                }
+                val inventory = Inventory(nextId, 0, current.id)
+                cocktailViewModel.insert(inventory)
             }
         })
     }

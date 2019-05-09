@@ -28,6 +28,13 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
 
     }
 
+    fun getEntireInventory(): List<CocktailDao.InventoryTuple> {
+        return runBlocking {
+            withContext(viewModelScope.coroutineContext + Dispatchers.IO) {
+                repository.getEntireInventory()
+            }
+        }
+    }
 
     fun getAllCocktails(): List<Cocktail> {
         return runBlocking {

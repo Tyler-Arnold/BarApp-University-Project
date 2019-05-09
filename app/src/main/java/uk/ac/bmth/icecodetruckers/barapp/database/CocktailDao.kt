@@ -14,7 +14,10 @@ interface CocktailDao {
     )
 
     @Query("SELECT inventories.id, inventories.userId, inventories.ingredientId, ingredients.name FROM inventories INNER JOIN ingredients ON inventories.ingredientId=ingredients.id")
-    fun getEntireInventory(): LiveData<List<InventoryTuple>>
+    fun getEntireInventoryLiveData(): LiveData<List<InventoryTuple>>
+
+    @Query("SELECT inventories.id, inventories.userId, inventories.ingredientId, ingredients.name FROM inventories INNER JOIN ingredients ON inventories.ingredientId=ingredients.id")
+    fun getEntireInventory(): List<InventoryTuple>
 
     @Query("SELECT * FROM ingredients")
     fun getAllIngredients(): LiveData<List<Ingredient>>
