@@ -116,7 +116,7 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
             cocktailDao.insert(ingredientProductLink)
 
             var cocktail = Cocktail(0, "Daiquiri", "Sweet, sour, refreshing",
-                "45ml White Rum \n25ml Simple Syrup \n 30ml Lime Juice",
+                "45ml White Rum \n25ml Simple Syrup \n30ml Lime Juice",
                 "1. Pour all ingredients into shaker full of ice\n" +
                         "2. Shake well for 10 seconds\n" +
                         "3. Double-strain into a chilled cocktail glass",
@@ -141,7 +141,7 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
                 "1. Pour all ingredients into glass with ice",
                 "none")
             cocktailDao.insert(cocktail)
-            cocktail = Cocktail(4, "Dark & Stormy", "Sweet, sour, refreshing",
+            cocktail = Cocktail(4, "Dark & Stormy", "Caribbean classic",
             "45ml Dark Rum \nGinger Beer \nBitters",
             "1. Pour all ingredients into glass full of ice, add a dash of bitters",
             "none")

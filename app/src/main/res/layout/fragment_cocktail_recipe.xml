@@ -7,44 +7,55 @@
     android:orientation="vertical"
     tools:context=".CocktailRecipe">
 
-    <TextView
-        android:id="@+id/textViewCocktailName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Daiquiri"
-        android:textAlignment="center"
-        android:textSize="36sp" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="317dp"
-        android:src="@drawable/cocktail_image" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textViewCocktailIngredients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ingredients"
-        android:textSize="24sp" />
+            <TextView
+                android:id="@+id/textViewCocktailName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Daiquiri"
+                android:textAlignment="center"
+                android:textSize="36sp" />
 
-    <TextView
-        android:id="@+id/textViewCocktailIngredientsList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="45ml White Rum \n20ml Simple Syrup \n30ml Lime Juice" />
+            <TextView
+                android:id="@+id/textViewCocktailIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredients"
+                android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textViewCocktailRecipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Recipe"
-        android:textSize="24sp" />
+            <TextView
+                android:id="@+id/textViewCocktailIngredientsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="45ml White Rum \n20ml Simple Syrup \n30ml Lime Juice" />
 
-    <TextView
-        android:id="@+id/textViewCocktailRecipeBody"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1. Pour all ingredients into shaker full of ice cubes \n2. Shake well for 10 seconds \n3. Double-strain into chilled cocktail glass" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="317dp"
+                android:src="@drawable/cocktail_image" />
+
+            <TextView
+                android:id="@+id/textViewCocktailRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recipe"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textViewCocktailRecipeBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. Pour all ingredients into shaker full of ice cubes \n2. Shake well for 10 seconds \n3. Double-strain into chilled cocktail glass" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
