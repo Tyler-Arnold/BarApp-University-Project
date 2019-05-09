@@ -77,10 +77,12 @@ public abstract class CocktailRoomDatabase : RoomDatabase() {
             ingredient = Ingredient(1, "Dark Rum")
             cocktailDao.insert(ingredient)
 
+
             ingredient = Ingredient(2, "Simple Syrup")
             cocktailDao.insert(ingredient)
 
             ingredient = Ingredient(3, "Lime Juice")
+
             cocktailDao.insert(ingredient)
 
             var inventory = Inventory(0, 0, 0)

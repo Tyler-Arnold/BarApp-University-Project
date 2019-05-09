@@ -41,6 +41,7 @@ class BarManagement : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,9 +57,11 @@ class BarManagement : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 
+
         //observe the inventory LiveData
         cocktailViewModel.entireInventory.observe(this, Observer {
                 inventories -> // Update the cached copy of the words in the adapter.
+
             inventories?.let { adapter.setInventories(it) }
 
 
@@ -123,6 +126,10 @@ class BarManagement : Fragment() {
         super.onDetach()
         listener = null
     }
+
+
+
+
 
     /**
      * This interface must be implemented by activities that contain this

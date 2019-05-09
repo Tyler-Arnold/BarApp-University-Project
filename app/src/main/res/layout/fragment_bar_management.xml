@@ -8,6 +8,16 @@
     android:orientation="vertical"
     tools:context=".BarManagement">
 
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:onClick="addIngredient"
+        android:layout_gravity="right|bottom"
+        tools:ignore="OnClick" />
+
     <TextView
         android:id="@+id/textViewBarManagementTitle"
         android:layout_width="wrap_content"
@@ -17,6 +27,7 @@
         android:layout_marginEnd="8dp"
         android:text="Your Stock:"
         android:textSize="30sp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -44,3 +55,4 @@
         <!--android:background="@android:color/darker_gray"-->
         <!--tools:listitem="@layout/recyclerview_item" />-->
 </LinearLayout>
+
