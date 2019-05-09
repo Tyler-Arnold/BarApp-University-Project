@@ -61,7 +61,7 @@ class MainPage : Fragment() {
 
         val popularAdapter = CocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel)
 
-        val favAdapter = FavouritelListAdapter(this.activity!!.applicationContext, favViewModel)
+        val favAdapter = FavouriteListAdapter(this.activity!!.applicationContext, favViewModel)
 
         favView.adapter = favAdapter
         popularView.adapter = popularAdapter
