@@ -8,39 +8,51 @@
     android:orientation="vertical"
     tools:context=".BarManagement">
 
-    <TextView
-        android:id="@+id/textViewBarManagementTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:text="Your Stock:"
-        android:textSize="30sp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@android:color/darker_gray"
-        tools:listitem="@layout/recyclerview_item" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewYourCocktailsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:text="Your Cocktails:"
-        android:textSize="30sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <!--<androidx.recyclerview.widget.RecyclerView-->
-        <!--android:id="@+id/recyclerview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="24dp"-->
-        <!--android:background="@android:color/darker_gray"-->
-        <!--tools:listitem="@layout/recyclerview_item" />-->
+            <TextView
+                android:id="@+id/textViewBarManagementTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="8dp"
+                android:text="Your Stock:"
+                android:textSize="30sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@android:color/darker_gray"
+                tools:listitem="@layout/recyclerview_item_button" />
+
+            <TextView
+                android:id="@+id/textViewYourCocktailsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="8dp"
+                android:text="Your Cocktails:"
+                android:textSize="30sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_your_cocktails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@android:color/darker_gray"
+                tools:listitem="@layout/recyclerview_item_no_button" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

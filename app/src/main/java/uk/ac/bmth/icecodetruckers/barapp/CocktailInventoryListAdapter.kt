@@ -22,7 +22,7 @@ class CocktailInventoryListAdapter internal constructor (
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CocktailViewHolder {
-        val itemView = inflater.inflate(R.layout.recyclerview_item, parent, false)
+        val itemView = inflater.inflate(R.layout.recyclerview_item_button, parent, false)
         return CocktailViewHolder(itemView)
     }
 

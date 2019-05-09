@@ -51,25 +51,30 @@ class BarManagement : Fragment() {
         cocktailViewModel = ViewModelProviders.of(this).get(CocktailViewModel::class.java)
 
         //set up the recycler view
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = CocktailInventoryListAdapter(this.activity!!.applicationContext, cocktailViewModel)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
+        val inventoryRecyclerView: RecyclerView = view.findViewById(R.id.recyclerview)
+        val inventoryAdapter = CocktailInventoryListAdapter(this.activity!!.applicationContext, cocktailViewModel)
+        inventoryRecyclerView.adapter = inventoryAdapter
+        inventoryRecyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
+
+        //set up the recycler view
+        val yourCocktailRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerview_your_cocktails)
+        val yourCocktailAdapter = CocktailYourCocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel)
+        yourCocktailRecyclerView.adapter = yourCocktailAdapter
+        yourCocktailRecyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 
         //observe the inventory LiveData
         cocktailViewModel.entireInventory.observe(this, Observer {
                 inventories -> // Update the cached copy of the words in the adapter.
-            inventories?.let { adapter.setInventories(it) }
+            inventories?.let { inventoryAdapter.setInventories(it) }
 
 
-
-            calculateProduceableCocktails(cocktailViewModel.getAllCocktails(), cocktailViewModel.getAllIngredientsInCocktail(), inventories)
+            yourCocktailAdapter.setCocktails(calculateProducibleCocktails(cocktailViewModel.getAllCocktails(), cocktailViewModel.getAllIngredientsInCocktail(), inventories))
         })
 
         return view
     }
 
-    fun calculateProduceableCocktails(cocktails: List<Cocktail>, ingredientsInCocktail: List<IngredientsInCocktail>, inventory: List<CocktailDao.InventoryTuple>): List<Cocktail> {
+    fun calculateProducibleCocktails(cocktails: List<Cocktail>, ingredientsInCocktail: List<IngredientsInCocktail>, inventory: List<CocktailDao.InventoryTuple>): List<Cocktail> {
         var producibleCocktails: List<Cocktail> = mutableListOf()
 
         var currentCocktail = 0
