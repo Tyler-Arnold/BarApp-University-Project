@@ -19,8 +19,11 @@ interface CocktailDao {
     @Query("SELECT inventories.id, inventories.userId, inventories.ingredientId, ingredients.name FROM inventories INNER JOIN ingredients ON inventories.ingredientId=ingredients.id")
     fun getEntireInventory(): List<InventoryTuple>
 
-    @Query("SELECT * FROM ingredients")
+    @Query("SELECT ingredients.id, ingredients.name FROM ingredients LEFT OUTER JOIN inventories ON ingredients.id = inventories.ingredientId WHERE inventories.id IS null")
     fun getAllIngredients(): LiveData<List<Ingredient>>
+
+//    @Query("SELECT * FROM ingredients")
+//    fun getAllIngredients(): LiveData<List<Ingredient>>
 
     @Query("SELECT * FROM products")
     fun getAllProducts(): List<Product>

@@ -32,8 +32,8 @@ class AddIngredientAdapter internal constructor (
     override fun onBindViewHolder(holder: AddViewHolder, position: Int) {
         val current = ingredients[position]
         holder.cocktailItemView.text = current.name
-
-
+        val cocktailId = current.id
+        println(cocktailId)
 
         holder.cocktailAddButton.setOnClickListener {
             val entireInventory = cocktailViewModel.getEntireInventory()
@@ -43,7 +43,7 @@ class AddIngredientAdapter internal constructor (
             } else {
                 entireInventory.last().id + 1
             }
-            val inventory = Inventory(nextId, 0, current.id)
+            val inventory = Inventory(nextId, 0, cocktailId)
             cocktailViewModel.insert(inventory)
         }
     }
