@@ -1,13 +1,13 @@
 package uk.ac.bmth.icecodetruckers.barapp.database
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class CocktailViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -22,11 +22,27 @@ class CocktailViewModel(application: Application) : AndroidViewModel(application
         repository = CocktailRepository(cocktailDao)
         //allWords = repository.allWords
         entireInventory = repository.entireInventory
+
         allingredients = repository.allingredients
 
 
+    }
 
 
+    fun getAllCocktails(): List<Cocktail> {
+        return runBlocking {
+            withContext(viewModelScope.coroutineContext + Dispatchers.IO) {
+                repository.getCocktails()
+            }
+        }
+    }
+
+    fun getAllIngredientsInCocktail(): List<IngredientsInCocktail> {
+        return runBlocking {
+            withContext(viewModelScope.coroutineContext + Dispatchers.IO) {
+                repository.getIngredientsInCocktail()
+            }
+        }
     }
 
     //create a wrapper insert method that calls the repository's insert method.

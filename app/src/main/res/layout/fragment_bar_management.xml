@@ -1,24 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".BarManagement">
 
-    <Button
-        android:id="@+id/additem"
+
+    <TextView
+        android:id="@+id/textViewBarManagementTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:onClick="addIngredient"
-        android:text="Add" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:text="Your Stock:"
+        android:textSize="30sp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:background="@android:color/darker_gray"
-        tools:listitem="@layout/recyclerview_item">
+        tools:listitem="@layout/recyclerview_item" />
 
-    </androidx.recyclerview.widget.RecyclerView>/>
-</FrameLayout>
+    <TextView
+        android:id="@+id/textViewYourCocktailsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:text="Your Cocktails:"
+        android:textSize="30sp" />
+
+    <!--<androidx.recyclerview.widget.RecyclerView-->
+        <!--android:id="@+id/recyclerview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="24dp"-->
+        <!--android:background="@android:color/darker_gray"-->
+        <!--tools:listitem="@layout/recyclerview_item" />-->
+</LinearLayout>
+

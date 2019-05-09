@@ -1,20 +1,17 @@
 package uk.ac.bmth.icecodetruckers.barapp
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import uk.ac.bmth.icecodetruckers.barapp.database.CocktailViewModel
+import uk.ac.bmth.icecodetruckers.barapp.database.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -47,29 +44,68 @@ class BarManagement : Fragment() {
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_bar_management, container, false)
 
+        //get the view model, so I can do database stuff from here, even though I shouldn't
         cocktailViewModel = ViewModelProviders.of(this).get(CocktailViewModel::class.java)
 
+        //set up the recycler view
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = CocktailListAdapter(this.activity!!.applicationContext, cocktailViewModel)
+        val adapter = CocktailInventoryListAdapter(this.activity!!.applicationContext, cocktailViewModel)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 
-        cocktailViewModel.entireInventory.observe(this, Observer { inventories ->
+
+        //observe the inventory LiveData
+        cocktailViewModel.entireInventory.observe(this, Observer {
+                inventories -> // Update the cached copy of the words in the adapter.
 
             inventories?.let { adapter.setInventories(it) }
+
+
+
+            calculateProduceableCocktails(cocktailViewModel.getAllCocktails(), cocktailViewModel.getAllIngredientsInCocktail(), inventories)
         })
+
         return view
     }
 
-    fun removeItem(position: Int) {
+    fun calculateProduceableCocktails(cocktails: List<Cocktail>, ingredientsInCocktail: List<IngredientsInCocktail>, inventory: List<CocktailDao.InventoryTuple>): List<Cocktail> {
+        var producibleCocktails: List<Cocktail> = mutableListOf()
 
+        var currentCocktail = 0
+        var numberOfIngredients = 0
+        var numberOfMatchingIngredients = 0
+        for(ingredientIC in ingredientsInCocktail) {
+            if (currentCocktail != ingredientIC.cocktailId) {
+                //new cocktail
+                if (numberOfIngredients==numberOfMatchingIngredients) {
+                    //last cocktail can be made
+                    var newCocktail = cocktails.find {it.id == currentCocktail}
+
+                    if (newCocktail!= null) {
+                        //cocktail actually exists (final null check)
+                        producibleCocktails += newCocktail //add cocktail to list
+                    }
+                }
+
+                //reset variables for new cocktail
+                currentCocktail = ingredientIC.cocktailId
+                numberOfMatchingIngredients = 0
+                numberOfIngredients = 0
+            }
+
+
+            if ((inventory.find {it.ingredientId == ingredientIC.ingredientId}) != null) { //if you have current ingredient
+                numberOfMatchingIngredients++
+            }
+
+            numberOfIngredients++ //count the number of ingredients in this cocktail
+        }
+
+        return producibleCocktails
     }
 
     // TODO: Rename method, update argument and hook method into UI event

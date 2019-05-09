@@ -22,6 +22,12 @@ interface CocktailDao {
     @Query("SELECT * FROM products")
     fun getAllProducts(): List<Product>
 
+    @Query("SELECT * FROM cocktails")
+    suspend fun getAllCocktails(): List<Cocktail>
+
+    @Query("SELECT * FROM ingredients_in_cocktail")
+    suspend fun getAllIngredientsInCocktail(): List<IngredientsInCocktail>
+
     @Insert
     suspend fun insert(user: User)
 
@@ -39,6 +45,9 @@ interface CocktailDao {
 
     @Insert
     suspend fun insert(cocktail: Cocktail)
+
+    @Insert
+    suspend fun insert(ingredientsInCocktail: IngredientsInCocktail)
 
 //    @Transaction
 //    @Query ("SELECT ingredients.id, ingredients.name FROM ingredients" +
@@ -58,6 +67,8 @@ interface CocktailDao {
     fun deleteAllProduct()
     @Query("DELETE FROM cocktails")
     fun deleteAllCocktail()
+    @Query("DELETE FROM ingredients_in_cocktail")
+    fun deleteAllIngredientsInCocktail()
 
     @Delete
     fun delete(inventory: Inventory)

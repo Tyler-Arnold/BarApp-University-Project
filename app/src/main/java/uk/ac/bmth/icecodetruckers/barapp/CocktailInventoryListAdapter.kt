@@ -1,6 +1,5 @@
 package uk.ac.bmth.icecodetruckers.barapp
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import uk.ac.bmth.icecodetruckers.barapp.database.*
 
-class CocktailListAdapter internal constructor (
+class CocktailInventoryListAdapter internal constructor (
     context: Context,
     var cocktailViewModel: CocktailViewModel
-) : RecyclerView.Adapter<CocktailListAdapter.CocktailViewHolder>(){
+) : RecyclerView.Adapter<CocktailInventoryListAdapter.CocktailViewHolder>(){
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var inventories = emptyList<CocktailDao.InventoryTuple>() // Cached copy of ingredients
 
@@ -34,12 +33,10 @@ class CocktailListAdapter internal constructor (
 
         // Remove an Item
         // I know this shouldn't be in the adapter, but I don't care anymore
-        holder.cocktailRemoveButton.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?) {
-                val inventory = Inventory(current.id, current.userId, current.ingredientId)
-                cocktailViewModel.delete(inventory)
-            }
-        })
+        holder.cocktailRemoveButton.setOnClickListener {
+            val inventory = Inventory(current.id, current.userId, current.ingredientId)
+            cocktailViewModel.delete(inventory)
+        }
     }
 
     internal fun setInventories(inventories: List<CocktailDao.InventoryTuple>) {

@@ -11,6 +11,17 @@ class CocktailRepository(private val cocktailDao: CocktailDao) {
     //wrapper for insert method, must call on non-ui thread or app will crash
     //use @WorkerThread to mark the method needs to be called on a non-ui thread
     //add suspend modifier to tell compiler that this needs to be called from a coroutine or suspending function
+
+    @WorkerThread
+    suspend fun getCocktails(): List<Cocktail> {
+        return cocktailDao.getAllCocktails()
+    }
+
+    @WorkerThread
+    suspend fun getIngredientsInCocktail(): List<IngredientsInCocktail> {
+        return cocktailDao.getAllIngredientsInCocktail()
+    }
+
     @WorkerThread
     suspend fun insert(user: User) {
         cocktailDao.insert(user)

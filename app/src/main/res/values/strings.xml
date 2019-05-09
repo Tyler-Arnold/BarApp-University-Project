@@ -8,4 +8,5 @@
     <string name="recipe">Recipe</string>
     <string name="app_label">Happy Hour</string>
     <string name="search_hint">Ingredients</string>
+    <string name="remove">Remove</string>
 </resources>
