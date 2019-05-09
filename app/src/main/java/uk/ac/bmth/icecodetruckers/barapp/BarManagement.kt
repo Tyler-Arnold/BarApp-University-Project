@@ -64,6 +64,7 @@ class BarManagement : Fragment() {
         yourCocktailRecyclerView.layoutManager = LinearLayoutManager(this.activity!!.applicationContext)
 
 
+
         //observe the inventory LiveData
         cocktailViewModel.entireInventory.observe(this, Observer {
                 inventories -> // Update the cached copy of the words in the adapter.

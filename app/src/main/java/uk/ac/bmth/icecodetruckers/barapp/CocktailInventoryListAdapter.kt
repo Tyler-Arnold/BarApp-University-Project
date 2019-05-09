@@ -17,7 +17,7 @@ class CocktailInventoryListAdapter internal constructor (
     private var inventories = emptyList<CocktailDao.InventoryTuple>() // Cached copy of ingredients
 
     inner class CocktailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cocktailItemView: TextView = itemView.findViewById(R.id.textView)
+        val cocktailItemView: TextView = itemView.findViewById(R.id.textViewMainPageTitle)
         val cocktailRemoveButton: Button = itemView.findViewById(R.id.button)
     }
 

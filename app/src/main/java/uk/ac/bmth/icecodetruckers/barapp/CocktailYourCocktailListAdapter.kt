@@ -16,7 +16,7 @@ class CocktailYourCocktailListAdapter internal constructor (
     private var cocktails = emptyList<Cocktail>() // Cached copy of ingredients
 
     inner class CocktailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cocktailItemView: TextView = itemView.findViewById(R.id.textView)
+        val cocktailItemView: TextView = itemView.findViewById(R.id.textViewMainPageTitle)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CocktailViewHolder {
